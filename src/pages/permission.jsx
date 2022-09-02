@@ -5,7 +5,7 @@ function Permisssion() {
     return (  
         <div>
             <NavBar/>
-            <div className='w-8/12 mt-60 min-h-fit border-2 m-auto'>
+            <div className='w-8/12 mt-40 min-h-fit border-2 m-auto'>
                 <h1 className='text-3xl text-center font-bold'>Permission Form</h1>
             <form method="post"  className='w-11/12 m-auto mt-10 p-2 flex-col flex'>
                     <Input type={"text"} label={"Student Names"} name={"studentName"} placeholder={"Eg: Ganza Hodari..."} className="border-b-2 border-black m-2 focus:border-blue-600 focus:outline-none border-dashed"/>

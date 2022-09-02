@@ -15,7 +15,7 @@ function Options() {
                 <h1 className='m-auto text-xl text-center'>Choose what you want to do:</h1>
                 <div className="flex flex-col mt-20 items-center w-11/12">
                     <Option content={'Sign a permission to a student'} number={'1'} redirectPage={'permission'}/>
-                    <Option content={'Sign a discipline issue'} number={'2'} redirectPage={'disciplineIssue'}/>
+                    <Option content={'Sign a discipline issue'} number={'2'} redirectPage={'discipline'}/>
                 </div>
             </div>
         </div>

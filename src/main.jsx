@@ -6,6 +6,8 @@ import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/login';
 import Options from './pages/options';
 import NotFound from './pages/NotFound';
+import Permisssion from './pages/permission';
+import Discipline from './pages/disciplinePage';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -14,6 +16,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/login'  element={<Login />}></Route>
         <Route path='/options' element={<Options />}></Route>
         <Route path='/' element={<App />} />
+        <Route path='/permission' element={<Permisssion />}></Route>
+        <Route path='/discipline' element={<Discipline />}></Route>
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
     </Router>

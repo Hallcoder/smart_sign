@@ -4,7 +4,7 @@
 
 @layer utilities{
 *{
-    font-family: sans-serif;
+    font-family:'Mukta', sans-serif;
     margin:0;
     padding:0;  
 }

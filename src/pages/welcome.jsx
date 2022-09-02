@@ -6,8 +6,8 @@ function Welcome() {
     return ( 
         <div className='flex min-h-screen'>
          <div className='flex flex-col w-full h-screen  justify-center items-center'>
-            <img src={logo} alt="" className='w-2/12 mr-auto mb-10 ml-auto h-2/6' />
-            <p className='text-2xl m-2'>Signing permissions has never been easier than today</p>
+            <img src={logo} alt="" className='min-w-2/12 mr-auto mb-10 ml-auto min-h-2/6' />
+            <p className='text-2xl text-center m-2'>Signing permissions has never been easier than today</p>
             <button onClick={() => navigate('/login') } className='bg-blue-700 h-20 w-60 text-white text-xl rounded-md font-bold'>Get Started</button>
          </div>
         </div>

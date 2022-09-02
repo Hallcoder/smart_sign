@@ -5,6 +5,7 @@ import './index.css'
 import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './pages/login';
 import Options from './pages/options';
+import NotFound from './pages/NotFound';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/login'  element={<Login />}></Route>
         <Route path='/options' element={<Options />}></Route>
         <Route path='/' element={<App />} />
+        <Route path='*' element={<NotFound/>}></Route>
       </Routes>
     </Router>
   </React.StrictMode>

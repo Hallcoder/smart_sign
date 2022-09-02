@@ -6,12 +6,17 @@ import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import NavBar from '../components/Navbar';
+import Option from '../components/common/option';
 function Options() {
     return ( 
         <div>
             <NavBar title={'Options Page'}/>
             <div className='w-6/12 border border-blue-400 mt-60 h-[40vh] rounded-md m-auto'>
                 <h1 className='m-auto text-xl text-center'>Choose what you want to do:</h1>
+                <div className="flex flex-col mt-20 items-center w-11/12">
+                    <Option content={'Sign a permission to a student'} number={'1'} redirectPage={'permission'}/>
+                    <Option content={'Sign a discipline issue'} number={'2'} redirectPage={'disciplineIssue'}/>
+                </div>
             </div>
         </div>
      );

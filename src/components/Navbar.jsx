@@ -5,9 +5,9 @@ import intro from '../assets/images/intro.jpg';
 import {MdSearch,MdPersonPin,MdMenu} from 'react-icons/md';
 function NavBar({title}) {
     return ( 
-        <div className='fixed top-0 z-1 h-[8vh] flex w-full items-center justify-between border-b shadow-md'>
+        <div className='fixed top-0 z-1 h-[8vh] bg-white flex w-full items-center justify-between border-b shadow-md'>
             <div>
-           <img src={logo} alt="logo" className='sm:w-8/12 w-8/12  h-16  m-2' />
+           <img src={logo} alt="logo" className='sm:w-8/12 w-8/12  h-16  m-4' />
             </div>
             <div className='text-xl tex-center font-bold hidden sm:flex'>
                 <h1>{title}</h1>

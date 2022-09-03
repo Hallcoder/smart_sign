@@ -2,17 +2,27 @@ import React, { useRef } from 'react';
 import Input from '../components/common/input';
 import NavBar from '../components/Navbar';
 import swal from 'sweetalert';
+import QRCode from 'qrcode';
 import { useNavigate } from 'react-router-dom';
 function Permisssion() {
     const navigate = useNavigate();
     const divRef  = useRef();
     const handleChange = (e) => {
         e.preventDefault();
+        QRCode.toDataURL('https://smart-sign-csa.vercel.app')
+     .then(url => {
+        divRef.current.innerHTML = url;
+    console.log(url)
+  })
+  .catch(err => {
+    console.error(err)
+  })
+
         swal('Are you sure you want to sign this permission to Ganza Hodari?').then((value) => {
             swal({
                 title:'Finished!',
                 text:'You have signed this permission',
-                type:'success'
+                icon:'success'
             });
             if(value){
               divRef.current.innerHTML = `
@@ -25,10 +35,13 @@ function Permisssion() {
     return (  
         <div>
             <NavBar/>
-            
+            <div>
+                Info about this permission.
+                D
+            </div>
             <div ref={divRef} className='w-8/12 mt-24 min-h-fit rounded-md border-blue-500 border-2 m-auto'>
                 <h1 className='text-3xl text-center font-bold'>Permission Form</h1>
-            <form method="post" onSubmit={(e)=> handleChange(e)}  className='w-11/12 m-auto mt-10 p-2 text-xs flex-col flex'>
+            <form method="post" onSubmit={(e)=> handleChange(e)}  className='sm:w-11/12 w-full  m-auto mt-10 p-2 text-xs flex-col flex'>
                     <Input type={"text"} label={"Student Names"} name={"studentName"} placeholder={"Eg: Ganza Hodari..."} className="border-b-2 border-black m-2 focus:border-blue-600 focus:outline-none border-dashed"/>
                     <div className='flex'>
                         <Input type="date" label="Departure date" name={"departureDate"}/>

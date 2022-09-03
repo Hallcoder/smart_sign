@@ -6,9 +6,9 @@ function Discipline() {
     return ( 
         <div>
         <NavBar/>
-        <div className='w-8/12 mt-36 min-h-fit border-2 m-auto'>
+        <div className='w-8/12 mt-36 min-h-fit border-2 border-blue-500 rounded-md m-auto'>
             <h1 className='text-3xl text-center font-bold'>Discipline Signing Form</h1>
-        <form method="post"  className='w-11/12 m-auto text-sm mt-10 p-2 flex-col flex'>
+        <form method="post"  className='w-11/12 m-auto text-sm mt-10  flex-col flex'>
                 <Input type={"text"} label={"Student Names"} name={"studentName"} placeholder={"Eg: Ganza Hodari..."} className="border-b-2 border-black m-2 focus:border-blue-600 focus:outline-none border-dashed"/>
                 <Input type="date" label="Signing date" name={"departureDate"}/>
                 <div className='flex'>

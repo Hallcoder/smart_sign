@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Input from '../components/common/input';
 import logo from "../assets/images/logo.png";
 import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
+import Loader from '../components/common/Loader';
 function Login() {
     const navigate = useNavigate();
+    const
+    const buttonRef = useRef();
     const handleSubmit = (e) => {
    e.preventDefault()
-  swal('Logged in succesfully!');
-  console.log('handle submit called');
-  navigate('/options');
+  buttonRef.current.innerHTML = `
+Loading...
+  `;
+  setTimeout(()=>{
+    swal('Logged in succesfully!');
+    navigate('/options');
+  },2000)
+  
     }
     return (  
         <div>
@@ -19,7 +27,7 @@ function Login() {
             <form  onSubmit={(e) => handleSubmit(e)} className='mt-16 sm:w-10/12 w-full flex flex-col'>
                 <Input type={'text'} name={'email'} placeholder={'Enter your email...'} label={'Email'}/>
                 <Input type={'text'} name={'password'} placeholder={'Your password...'} label={'Password'}/>
-                <button  className='bg-blue-700 text-white font-bold text-2xl rounded-md h-16 w-40 m-auto mt-4'>Login</button>
+                <button ref={buttonRef}  className='bg-blue-700 text-white font-bold text-2xl rounded-md h-16 w-40 m-auto mt-4'>Login</button>
             </form>
           </div>
         </div>

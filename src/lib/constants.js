@@ -13,4 +13,8 @@ export const permissionFormSchema = Joi.object({
         returnTime:Joi.string().required(),
         issuer:Joi.string().required().min(5),
         reason:Joi.string().required(),
+});
+export const loginFormSchema = Joi.object({
+    email: Joi.string().email({ tlds: { allow: false } }).required(),
+    password: Joi.string().min(6).max(15)
 })

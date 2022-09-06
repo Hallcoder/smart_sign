@@ -28,6 +28,7 @@ function Permisssion() {
     if(validate.error){
         swal(validate.error.details[0].message);
         console.log(validate.error.details);
+        buttonRef.current.innerHTML = 'SIGN'
         return;
     }else{
         let data = await handleFormSubmission(formData,`${api}/permission`,POST);
@@ -59,16 +60,16 @@ function Permisssion() {
                     </div>
                     <div className='flex w-full'>
                         <div className='w-6/12'>
-                            <label htmlFor="reason" className='font-bold text-lg'>Issuer:</label><br />
-                            <select name="departureReason" value={formData['issuer']} onChange={(e) => handleChange(e,setFormData,formData)} id="reason" className='h-14 text-md w-6/12 bg-white focus:outline-none rounded-md border'>
-                                <option className='h-12 ' value="DisciplineIssue">Discipline Prefect</option>
-                                <option className='h-12 ' value="MedicalCare">Patron</option>
-                                <option className='h-12 ' value="FamilyIssue">Matron</option>
+                            <label htmlFor="issuer" className='font-bold text-lg'>Issuer:</label><br />
+                            <select name="issuer" value={formData['issuer']} onChange={(e) => handleChange(e,setFormData,formData)} id="issuer" className='h-14 text-md w-6/12 bg-white focus:outline-none rounded-md border'>
+                                <option className='h-12 ' value="prefect">Discipline Prefect</option>
+                                <option className='h-12 ' value="patron">Patron</option>
+                                <option className='h-12 ' value="matron">Matron</option>
                             </select>
                         </div>
                         <div className='w-6/12'>
                             <label htmlFor="reason" className='font-bold text-md'>Departure Reason:</label><br />
-                            <select  value={formData['reason']} onChange={(e) => handleChange(e,setFormData,formData)} name="departureReason" id="reason" className='h-14 w-6/12 text-md bg-white focus:outline-none rounded-md border'>
+                            <select  value={formData['reason']} onChange={(e) => handleChange(e,setFormData,formData)} name="reason" id="reason" className='h-14 w-6/12 text-md bg-white focus:outline-none rounded-md border'>
                             <option className='h-12 ' value="FamilyIssue">Family Case</option>
                             <option className='h-12 ' value="MedicalCare">Medical Care</option>
                             <option className='h-12 ' value="DisciplineIssue">Discipline Issue</option>

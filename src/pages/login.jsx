@@ -39,7 +39,6 @@ Loading...
      })
   }
     }
-
     return (  
         <div>
           <div className='border-2 border-blue-400 rounded-md sm:w-4/12 w-full mt-40 h-[60vh] m-auto  items-center flex flex-col'>

@@ -10,6 +10,7 @@ import { handleChange } from '../lib/handleChange';
 function Permisssion() {
     const navigate = useNavigate();
     const params = useParams();
+    console.log(params);
     const buttonRef = useRef();
     const [formData,setFormData] = useState({
         studentNames:'',
@@ -23,17 +24,18 @@ function Permisssion() {
     const divRef  = useRef();
     const handleSubmit = async(e) => {
     e.preventDefault();
-    buttonRef.current.innerHTML = `Loading...`;
+    buttonRef.current.innerHTML = 'Loading...';
     let validate = permissionFormSchema.validate(formData);
     if(validate.error){
+        buttonRef.current.innerHTML = 'SIGN'
         swal(validate.error.details[0].message);
         console.log(validate.error.details);
-        buttonRef.current.innerHTML = 'SIGN'
         return;
     }else{
-        let data = await handleFormSubmission(formData,`${api}/permission`,POST);
-        if(data.data.status == 200){
-         navigate(`/permission?id=${data.data.permission.number}`);
+        let data = await handleFormSubmission(formData,`${api}/permissions/sign`,POST);
+        if(data.status == 200){
+         swal('Permission Granted',{icon:'success'});
+         navigate(`/permission?id=${data.data.permission._id}`);
         }
     }
 }
@@ -46,7 +48,7 @@ function Permisssion() {
             <div>
                 Info about this permission.
             </div>
-            <div ref={divRef} className='w-8/12 mt-48 min-h-fit rounded-md border-blue-500 border-2 m-auto'>
+            <div ref={divRef} className='w-8/12 mt-48 min-h-fit min-w-fit rounded-md border-blue-500 border-2 m-auto'>
                 <h1 className='text-3xl text-center font-bold'>Permission Form</h1>
             <form method="post" onSubmit={(e)=> handleSubmit(e)}  className='sm:w-11/12 w-full  m-auto mt-10 p-2 flex-col flex'>
                     <Input type={"text"} value={formData['studentNames']} label={"Student Names"} onChange={(e) => handleChange(e,setFormData,formData)} name={"studentNames"} placeholder={"Eg: Ganza Hodari..."} className="border-b-2 border-black m-2 focus:border-blue-600 focus:outline-none border-dashed"/>

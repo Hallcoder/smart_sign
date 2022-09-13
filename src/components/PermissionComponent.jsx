@@ -1,7 +1,7 @@
 import React from 'react';
 function PermissionComponent() {
     return ( 
-        <div></div>
+        <div>Permission Component</div>
      );
 }
 

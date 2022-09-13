@@ -16,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='/login'  element={<Login />}></Route>
         <Route path='/options' element={<Options />}></Route>
         <Route path='/' element={<App />} />
-        <Route path='/permission' element={<Permisssion />}></Route>
+        <Route path='/permission' element={<Permisssion />}>
+              <Route path='/permission/:id' element={<Permisssion />}></Route>
+        </Route>
         <Route path='/discipline' element={<Discipline />}></Route>
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>

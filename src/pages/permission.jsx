@@ -35,12 +35,12 @@ function Permisssion() {
         let data = await handleFormSubmission(formData,`${api}/permissions/sign`,POST);
         if(data.status == 200){
          swal('Permission Granted',{icon:'success'});
-         navigate(`/permission?id=${data.data.permission._id}`);
+         navigate(`/permission/${data.data.permission._id}`);
         }
     }
 }
     if(params.id){
-        return <PermissionComponent />
+        return <PermissionComponent id={params.id} />
     }else {
     return (  
         <div>

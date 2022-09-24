@@ -7,7 +7,9 @@ import axios from 'axios';
 import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-dom';
 import algoliasearch from 'algoliasearch';
 function NavBar({title}) {
-    const searchClient = algoliasearch(import.meta.env.ALGOLIA_APPID, import.meta.env.ALGOLIA_ADMINKEY)
+    const searchClient = algoliasearch(import.meta.env.ALGOLIA_APPID, import.meta.env.ALGOLIA_ADMINKEY,{
+        enablePersonalization:false
+    })
     const index = searchClient.initIndex('permissions')
     // useEffect(()=>{
     //   axios.get('https://ocean.com/permissions')

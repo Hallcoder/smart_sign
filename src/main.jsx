@@ -10,7 +10,6 @@ import Permisssion from './pages/permission';
 import Discipline from './pages/disciplinePage';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <Router>
       <Routes>
         <Route path='/login'  element={<Login />}></Route>
@@ -23,5 +22,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
     </Router>
-  </React.StrictMode>
 )

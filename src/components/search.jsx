@@ -1,10 +1,7 @@
 import React from 'react';
 import algoliasearch from 'algoliasearch';
 import {SearchBox,Configure,InstantSearch,connectHits,connectSearchBox}  from "react-instantsearch-dom"
-import { Close } from '@mui/icons-material';
-import Input from './common/input';
-import { handleChange } from '../lib/handleChange';
-import { useState } from 'react';
+import { Close } from '@mui/icons-material';  
 function Search({hide}) {
     const searchClient = algoliasearch(import.meta.env.VITE_ALGOLIA_APPID, import.meta.env.VITE_ALGOLIA_ADMINKEY,{
         enablePersonalization:false

@@ -2,11 +2,17 @@ import React, { useEffect } from "react";
 import QRcode from "qrcode";
 import { useState } from "react";
 import NavBar from "./Navbar";
+import axios from  "axios";
+import { api } from './../lib/constants';
 function PermissionComponent({ id }) {
   let [image, setImage] = useState("");
   useEffect(() => {
-    QRcode.toDataURL(`http://localhost/search/${id}`, (err, url) => {
-      setImage(url);
+      axios.get(`${api}/permissions/${id}`)
+           .then(res => {
+            console.log(res.data)
+            QRcode.toDataURL(JSON.stringify(res.data.permission), (err, url) => {
+              setImage(url);
+           })
     });
   }, []);
   return (

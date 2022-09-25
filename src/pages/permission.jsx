@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Input from '../components/common/input';
 import NavBar from '../components/Navbar';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -20,6 +20,9 @@ function Permisssion() {
         returnTime:'',
         issuer:'',
         reason:'',
+    })
+    useEffect(() => {
+        document.title = 'Smart Sign ~ Permission'
     })
     const divRef  = useRef();
     const handleSubmit = async(e) => {

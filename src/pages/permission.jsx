@@ -7,10 +7,13 @@ import { api, permissionFormSchema, POST } from '../lib/constants';
 import swal from 'sweetalert';
 import PermissionComponent from '../components/PermissionComponent';
 import { handleChange } from '../lib/handleChange';
+import { getAuth } from 'firebase/auth';
+import axios from 'axios';
 function Permisssion() {
     const navigate = useNavigate();
     const params = useParams();
-    console.log(params);
+    const [loggedIn,setLoggedIn] = useState(false);
+    const [state,setState] = useState('SIGN');
     const buttonRef = useRef();
     const [formData,setFormData] = useState({
         studentNames:'',
@@ -22,31 +25,36 @@ function Permisssion() {
         reason:'',
     })
     useEffect(() => {
-        document.title = 'Smart Sign ~ Permission'
-    })
+        document.title = 'Smart Sign ~ Permission';
+        axios.get(`${api}/user/get/${localStorage.getItem('user')}`)
+             .then(res => {
+                if(res.status == 200){
+                    setLoggedIn(true);
+                    return;
+                }
+             })
+    },[])
     const divRef  = useRef();
     const handleSubmit = async(e) => {
     e.preventDefault();
-    buttonRef.current.innerHTML = 'Loading...';
+    setState('Loading...')
     let validate = permissionFormSchema.validate(formData);
     if(validate.error){
-        buttonRef.current.innerHTML = 'SIGN'
         swal(validate.error.details[0].message);
-        console.log(validate.error.details);
+     setState('SIGN');
         return;
     }else{
-        signInWithEmailAndPassword(auth, formData.email, formData.password)
-        .then(async userCredential => {
+           if(loggedIn){
             let data = await handleFormSubmission(formData,`${api}/permissions/sign`,POST);
             if(data.status == 200){
              swal('Permission Granted',{icon:'success'});
              navigate(`/permission/${data.data.permission._id}`);
-            }
-        })
-        .catch(err => {
-          swal(err.message);
-        });
-       
+            } 
+           }else{
+            swal('Log In to be able to sign a permission')
+            navigate('/login');
+           }
+                  
     }
 }
     if(params.id){
@@ -58,7 +66,7 @@ function Permisssion() {
             <div>
                 Info about this permission.
             </div>
-            <div ref={divRef} className='w-8/12 mt-48 min-h-fit min-w-fit rounded-md border-blue-500 border-2 m-auto'>
+            <div ref={divRef} className='w-8/12 mt-[17vh] min-h-fit min-w-fit rounded-md shadow-lg  m-auto'>
                 <h1 className='text-3xl text-center font-bold'>Permission Form</h1>
             <form method="post" onSubmit={(e)=> handleSubmit(e)}  className='sm:w-11/12 w-full  m-auto mt-10 p-2 flex-col flex'>
                     <Input type={"text"} value={formData['studentNames']} label={"Student Names"} onChange={(e) => handleChange(e,setFormData,formData)} name={"studentNames"} placeholder={"Eg: Ganza Hodari..."} className="border-b-2 border-black m-2 focus:border-blue-600 focus:outline-none border-dashed"/>
@@ -88,7 +96,7 @@ function Permisssion() {
                                                 </select>
                         </div>
                     </div>
-                    <button ref={buttonRef} className='mt-8 bg-blue-800 font-bold rounded-sm text-white w-4/12 m-auto h-12'>SIGN</button>
+                    <button ref={buttonRef} className='mt-8 bg-blue-700 font-bold rounded-sm text-white w-4/12 m-auto h-12'>{state}</button>
                 </form>
             </div>
         </div>

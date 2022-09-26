@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { loginFormSchema } from "../lib/constants";
+import { api, loginFormSchema } from "../lib/constants";
 import { handleChange } from "../lib/handleChange";
 import Input from "../components/common/input";
 import logo from "../assets/images/logo.png";
@@ -11,6 +11,7 @@ import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
+  const[state,setState] = useState('Login');
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,20 +19,24 @@ function Login() {
   const buttonRef = useRef();
   const handleSubmit = async e => {
     e.preventDefault();
-    buttonRef.current.innerHTML = `
-Loading...
-  `;
+    setState('Loading...');
     let validate = loginFormSchema.validate(formData);
     if (validate.error) {
       swal(validate.error.details[0].message);
-      buttonRef.current.innerHTML = "Login";
+      setState('Login')
       return;
     } else {
       const auth = getAuth(app);
       signInWithEmailAndPassword(auth, formData.email, formData.password)
         .then(userCredential => {
           swal(userCredential.user.toString());
-          console.log(userCredential.user);
+          localStorage.setItem('user', userCredential.user.accessToken);
+          axios.post(`${api}/user/save`,{token:localStorage.getItem('user')})
+          .then(res => {
+             console.log('Sucess')
+          }).catch(err => {
+            swal(err.message)
+          })
           swal("Login successfully!");
           navigate("/options");
         })
@@ -42,7 +47,7 @@ Loading...
   };
   return (
     <div>
-      <div className="border-2 text-sm shadow-sm p-1 rounded-md sm:w-4/12 w-full mt-40 h-[60vh] m-auto  items-center flex flex-col">
+      <div className="text-sm shadow-lg p-1 rounded-md sm:w-4/12 w-full mt-32 h-[70vh] m-auto  items-center flex flex-col">
         <img src={logo} alt="" className="w-20 h-20 mt-4" />
         <h1 className="text-3xl font-bold mt-6">Login</h1>
         <form
@@ -67,7 +72,7 @@ Loading...
           />
           <button
             ref={buttonRef}
-            className="bg-blue-700 text-white font-bold text-2xl rounded-md h-16 w-40 m-auto mt-4"
+            className="bg-blue-700 text-white  text-xl rounded-md h-14 w-40 m-auto mt-4"
           >
             Login
           </button>

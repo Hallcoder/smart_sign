@@ -40,13 +40,13 @@ return;
                 <h1>{title}</h1>
             </div>
             <div className='none items-center mr-1 hidden sm:flex'>
-                <button className='bg-blue-800 h-12 rounded-md m-1 w-20 text-white font-bold text-xl'>New</button>
+                <button className='bg-blue-700 h-full p-1 rounded-md m-1 w-20 text-white  text-lg'>New</button>
                 {/* <Input></Input> */}
             <div className='mt-[23vh] flex flex-col'>
                 
                </div>
                 <Input onFocus={()=> handleShowSearch()} placeholder={'Search here!'} value={''}></Input>
-                <MdPersonPin className='text-5xl cursor-pointer'/>
+                <button className='w-4/12 p-2 text-white rounded-sm bg-blue-700 '>Log out</button>
             </div>
             <div className='sm:hidden flex'>
                 <MdMenu className='text-3xl'/>

@@ -35,11 +35,18 @@ function Permisssion() {
         console.log(validate.error.details);
         return;
     }else{
-        let data = await handleFormSubmission(formData,`${api}/permissions/sign`,POST);
-        if(data.status == 200){
-         swal('Permission Granted',{icon:'success'});
-         navigate(`/permission/${data.data.permission._id}`);
-        }
+        signInWithEmailAndPassword(auth, formData.email, formData.password)
+        .then(async userCredential => {
+            let data = await handleFormSubmission(formData,`${api}/permissions/sign`,POST);
+            if(data.status == 200){
+             swal('Permission Granted',{icon:'success'});
+             navigate(`/permission/${data.data.permission._id}`);
+            }
+        })
+        .catch(err => {
+          swal(err.message);
+        });
+       
     }
 }
     if(params.id){

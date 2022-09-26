@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { loginFormSchema } from "../lib/constants";
-import handleFormSubmission from "../lib/FormSubmission";
 import { handleChange } from "../lib/handleChange";
 import Input from "../components/common/input";
 import logo from "../assets/images/logo.png";
@@ -8,6 +7,7 @@ import swal from "sweetalert";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import app from "../lib/firebase-config";
+import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ Loading...
   };
   return (
     <div>
-      <div className="border-2 border-blue-400 rounded-md sm:w-4/12 w-full mt-40 h-[60vh] m-auto  items-center flex flex-col">
+      <div className="border-2 text-sm shadow-sm p-1 rounded-md sm:w-4/12 w-full mt-40 h-[60vh] m-auto  items-center flex flex-col">
         <img src={logo} alt="" className="w-20 h-20 mt-4" />
         <h1 className="text-3xl font-bold mt-6">Login</h1>
         <form

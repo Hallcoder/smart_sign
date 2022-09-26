@@ -6,10 +6,12 @@ import axios from  "axios";
 import { api } from './../lib/constants';
 function PermissionComponent({ id }) {
   let [image, setImage] = useState("");
+  let [name, setName] = useState("");
   useEffect(() => {
       axios.get(`${api}/permissions/${id}`)
            .then(res => {
             console.log(res.data)
+            setName(res.data.permission.studentNames);
             QRcode.toDataURL(JSON.stringify(res.data.permission), (err, url) => {
               setImage(url);
            })
@@ -20,7 +22,7 @@ function PermissionComponent({ id }) {
       <NavBar />
       <div className="w-[65vh] border-2 border-blue-500 rounded-md h-[70vh] m-auto mt-[15vh]">
         <h1 className="text-center font-bold text-xl mb-4 mt-14">
-          Mwenedata Apotre
+          {name}
         </h1>
         <p className="text-center">
           Scan the following code or use the code below it as a pass:

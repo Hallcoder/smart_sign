@@ -22,15 +22,15 @@ return;
         enablePersonalization:false
     })
     const index = searchClient.initIndex('permissions')
-    // useEffect(()=>{
-    //   axios.get('https://ocean.com/permissions')
-    //        .then((data) =>{
-    //         console.log(data)
-    //         return index.saveObjects(data, {
-    //             autoGenerateObjectIDIfNotExist: true
-    //           })
-    //        })
-    // },[])
+    useEffect(()=>{
+      axios.get('http://localhost:3000/permissions')
+           .then((data) =>{
+            console.log(data.data)
+            return index.saveObjects(data.data.permissions, {
+                autoGenerateObjectIDIfNotExist: true
+              })
+           })
+    },[])
     return ( 
         <div className='fixed top-0 z-1 h-[8vh] bg-white flex w-full items-center justify-between border-b shadow-md'>
             <div>

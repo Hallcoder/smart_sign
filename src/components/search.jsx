@@ -2,8 +2,10 @@ import React from 'react';
 import algoliasearch from 'algoliasearch';
 import {SearchBox,Configure,InstantSearch,connectHits,connectSearchBox}  from "react-instantsearch-dom"
 import { Close } from '@mui/icons-material';  
+import { useNavigate } from 'react-router-dom';
 function Search({hide}) {
-    const searchClient = algoliasearch(import.meta.env.VITE_ALGOLIA_APPID, import.meta.env.VITE_ALGOLIA_ADMINKEY,{
+  const navigate = useNavigate();
+    const searchClient = algoliasearch(import.meta.env.VITE_ALGOLIA_APPID, import.meta.env.VITE_ALGOLIA_SEARCHKEY,{
         enablePersonalization:false
     })
     const index = searchClient.initIndex('permissions')
@@ -21,8 +23,14 @@ function Search({hide}) {
         <ol className='border-2'>
        {
        hits.length !== 0 && hits.map(hit => (
-            <div key={hit.objectID} className='border-b border-blue-500 bg-white h-[5vh] cursor-pointer'>
-            <p className='text-lg'>{hit.name}</p>
+            <div key={hit._id} className='border-b border-blue-500 bg-white min-h-[5vh] cursor-pointer' onClick={() =>{ 
+              navigate(`/permission/${hit._id}`)
+              window.location.reload()
+            } 
+              }>
+            <p className='text-lg'>{hit.studentNames}</p>
+            <p className='text-xs'>{hit.returnDate}</p>
+            <p className='text-xs'>{hit.reason}</p>
             </div> 
           ))
        }   

@@ -20,7 +20,7 @@ function PermissionComponent({ id }) {
   return (
     <div>
       <NavBar />
-      <div className="w-[65vh] border-2 border-blue-500 rounded-md h-[70vh] m-auto mt-[15vh]">
+      <div className="w-[65vh] border shadow-2xl rounded-md h-[70vh] m-auto mt-[15vh]">
         <h1 className="text-center font-bold text-xl mb-4 mt-14">
           {name}
         </h1>

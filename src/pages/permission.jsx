@@ -68,7 +68,7 @@ function Permisssion() {
             <div>
                 Info about this permission.
             </div>
-            <div ref={divRef} className='w-8/12 mt-[17vh] min-h-fit min-w-fit rounded-md shadow-lg  m-auto'>
+            <div ref={divRef} className='sm:w-8/12 mt-[17vh] min-h-fit min-w-fit rounded-md shadow-lg  m-auto'>
                 <h1 className='text-3xl text-center font-bold'>Permission Form</h1>
             <form method="post" onSubmit={(e)=> handleSubmit(e)}  className='sm:w-11/12 w-full  m-auto mt-10 p-2 flex-col flex'>
                     <Input type={"text"} value={formData['studentNames']} label={"Student Names"} onChange={(e) => handleChange(e,setFormData,formData)} name={"studentNames"} placeholder={"Eg: Ganza Hodari..."} className="border-b-2 border-black m-2 focus:border-blue-600 focus:outline-none border-dashed"/>

@@ -9,9 +9,10 @@ function Search({hide}) {
         enablePersonalization:false
     })
     const index = searchClient.initIndex('permissions')
-    index.setSettings({
+    const adminIndex = algoliasearch(import.meta.env.VITE_ALGOLIA_APPID,import.meta.env.VITE_ALGOLIA_ADMINKEY).initIndex('permissions');
+    adminIndex.setSettings({
       distinct:1
-    })
+    })   
     const SearchBox = ({ currentRefinement, refine }) => (
         <input
           type="search"

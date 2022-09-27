@@ -9,6 +9,9 @@ function Search({hide}) {
         enablePersonalization:false
     })
     const index = searchClient.initIndex('permissions')
+    index.setSettings({
+      distinct:1
+    })
     const SearchBox = ({ currentRefinement, refine }) => (
         <input
           type="search"

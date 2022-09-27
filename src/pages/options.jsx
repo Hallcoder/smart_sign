@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -7,7 +7,12 @@ import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';
 import NavBar from '../components/Navbar';
 import Option from '../components/common/option';
+import { useNavigate } from 'react-router-dom';
 function Options() {
+    const navigate = useNavigate();
+    useEffect(() =>{
+        if(!localStorage.getItem('user')) return navigate('/login');
+    })
     return ( 
         <div>
             <NavBar title={'Options Page'}/>

@@ -6,10 +6,17 @@ import {MdSearch,MdPersonPin,MdMenu} from 'react-icons/md';
 import axios from 'axios';
 import { InstantSearch, SearchBox,Configure ,connectHits} from 'react-instantsearch-dom';
 import Search from './search';
+import { useNavigate } from 'react-router-dom';
 function NavBar({title}) {
+  const navigate = useNavigate();
   const [style,setShowSearch] = useState({
     display:'none'
   });
+  const Logout = () => {
+    localStorage.removeItem('user');
+    navigate('/login');
+    return;
+  }
   const handleShowSearch = () => {
 if(style.display == 'none'){
   setShowSearch({display:'flex'});
@@ -46,7 +53,7 @@ return;
                 
                </div>
                 <Input onFocus={()=> handleShowSearch()} placeholder={'Search here!'} value={''}></Input>
-                <button className='w-4/12 p-2 text-white rounded-sm bg-blue-700 '>Log out</button>
+                <button className='w-4/12 p-2 text-white rounded-sm bg-blue-700 ' onClick={() => Logout()}>Log out</button>
             </div>
             <div className='sm:hidden flex'>
                 <MdMenu className='text-3xl'/>

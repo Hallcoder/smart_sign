@@ -25,6 +25,7 @@ function Permisssion() {
         reason:'',
     })
     useEffect(() => {
+        if(!localStorage.getItem('user')) return navigate('/login');
         document.title = 'Smart Sign ~ Permission';
         axios.get(`${api}/user/get/${localStorage.getItem('user')}`)
              .then(res => {
@@ -58,6 +59,7 @@ function Permisssion() {
     }
 }
     if(params.id){
+        if(!localStorage.getItem('user')) return navigate('/login');
         return <PermissionComponent id={params.id} />
     }else {
     return (  

@@ -74,7 +74,7 @@ function Login() {
             ref={buttonRef}
             className="bg-blue-700 text-white    text-xl rounded-md h-14 w-40 m-auto mt-4"
           >
-            Login
+            {state}
           </button>
         </form>
       </div>

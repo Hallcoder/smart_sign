@@ -29,19 +29,26 @@ function Login() {
       const auth = getAuth(app);
       signInWithEmailAndPassword(auth, formData.email, formData.password)
         .then(userCredential => {
+          setFormData({
+            email:'',
+            password:''
+          });
           swal(userCredential.user.toString());
           localStorage.setItem('user', userCredential.user.accessToken);
           axios.post(`${api}/user/save`,{token:localStorage.getItem('user')})
           .then(res => {
-             console.log('Sucess')
+            swal("Login successfully!");
+            navigate("/options");
           }).catch(err => {
-            swal(err.message)
+            swal(err.response.data.message);
+            setState('Login')
+            return;
           })
-          swal("Login successfully!");
-          navigate("/options");
+          
         })
         .catch(err => {
           swal(err.message);
+          setState('Login')
         });
     }
   };

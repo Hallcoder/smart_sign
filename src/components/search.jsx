@@ -43,7 +43,7 @@ function Search({hide}) {
       );      
     const CustomHits = connectHits(Hits);
     return ( 
-        <div className='h-[75vh] w-9/12 m-auto border-blue-500 p-1 rounded-md bg-white fixed border bg-opacity-90'>
+        <div className='sm:h-[75vh] sm:w-9/12  border-blue-500 p-1 rounded-md bg-white absolute border bg-opacity-90'>
             <Close className='w-2/12 m-2 h-16 border rounded-full float-right' onClick={() => hide()}/>
             <InstantSearch 
             indexName={index.indexName}

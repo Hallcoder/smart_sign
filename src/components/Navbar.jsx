@@ -4,6 +4,7 @@ import Input from './common/input';
 import algoliasearch from 'algoliasearch';
 import {MdMenu} from 'react-icons/md';
 import axios from 'axios';
+import Cart from './'
 import { InstantSearch, SearchBox,Configure ,connectHits} from 'react-instantsearch-dom';
 import Search from './search';
 import { useNavigate } from 'react-router-dom';
@@ -75,6 +76,9 @@ return;
             </div>
            <div style={style} className='h-screen w-full  items-center justify-center absolute bg-black bg-opacity-60 top-0 p-24  shadow-xl shadow-black'>
            <Search hide={handleShowSearch}/>
+           </div>
+           <div>
+            <Cart />
            </div>
         </div>
      );

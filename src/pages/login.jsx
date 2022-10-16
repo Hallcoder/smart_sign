@@ -40,7 +40,7 @@ function Login() {
             swal("Login successfully!");
             navigate("/options");
           }).catch(err => {
-            swal(err.response.data.message);
+            swal(err.response.data);
             setState('Login')
             return;
           })

@@ -5,10 +5,10 @@ import algoliasearch from 'algoliasearch';
 import {MdMenu} from 'react-icons/md';
 import axios from 'axios';
 import Cart from './'
-import { InstantSearch, SearchBox,Configure ,connectHits} from 'react-instantsearch-dom';
 import Search from './search';
 import { useNavigate } from 'react-router-dom';
 import MobileNav from './mobileNav';
+import { api } from '../lib/constants';
 function NavBar({title}) {
   const navigate = useNavigate();
   const [style,setShowSearch] = useState({
@@ -44,13 +44,15 @@ return;
     })
     const index = searchClient.initIndex('permissions')
     useEffect(()=>{
-      axios.get('http://localhost:3000/permissions')
+      axios.get(`${api}/permissions`)
            .then((data) =>{
             console.log(data.data)
             index.clearObjects();
             return index.saveObjects(data.data.permissions, {
                 autoGenerateObjectIDIfNotExist: true
               })
+           }).catch(err =>{
+            console.log('Error:',err);
            })
     },[])
     return ( 

@@ -4,7 +4,6 @@ import Input from './common/input';
 import algoliasearch from 'algoliasearch';
 import {MdMenu} from 'react-icons/md';
 import axios from 'axios';
-import Cart from './'
 import Search from './search';
 import { useNavigate } from 'react-router-dom';
 import MobileNav from './mobileNav';

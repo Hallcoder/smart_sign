@@ -16,6 +16,10 @@ function Login() {
     email: "",
     password: "",
   });
+    useEffect(() => {
+      if(localStorage.getItem('user')){
+         navigate('/options');
+      }
   const buttonRef = useRef();
   const handleSubmit = async e => {
     e.preventDefault();

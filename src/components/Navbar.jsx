@@ -17,7 +17,6 @@ function NavBar({title}) {
     display:'none'
   })
   const handleShow = () => {
-    console.log('show called!',menu);
     if(menu.display == 'none'){
       setShowMenu({display:'flex'});
       return;
@@ -78,9 +77,7 @@ return;
            <div style={style} className='h-screen w-full  items-center justify-center absolute bg-black bg-opacity-60 top-0 p-24  shadow-xl shadow-black'>
            <Search hide={handleShowSearch}/>
            </div>
-           <div>
-            <Cart />
-           </div>
+           
         </div>
      );
 }

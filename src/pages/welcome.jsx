@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from "../assets/images/logo.png";
 function Welcome() {
     const navigate  = useNavigate();
+    useEffect(() => {
+      if(localStorage.getItem('user')){
+         navigate('/options');
+      }
+    })
     return ( 
         <div className='flex min-h-screen'>
          <div className='flex flex-col w-full h-screen  justify-center items-center'>

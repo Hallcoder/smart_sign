@@ -62,7 +62,7 @@ return;
                 <h1>{title}</h1>
             </div>
             <div className='none items-center mr-1 hidden sm:flex'>
-                <button className='bg-blue-700 h-full p-1 rounded-md m-1 w-20 text-white  text-lg'>New</button>
+                <button className='bg-blue-700 h-full p-1 rounded-md m-1 w-20 text-white  text-lg' onClick={() => navigate('/options')}>New</button>
             <div className='mt-[23vh] flex  flex-col'>
             </div>
                 <Input onFocus={()=> handleShowSearch()} placeholder={'Search here!'} value={''}></Input>

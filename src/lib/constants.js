@@ -4,7 +4,7 @@ export const POST = 'post';
 export const GET = 'get';
 export const DELETE = 'delete';
 export const PUT = 'put';
-export const api = 'https://smart-sign-csa.herokuapp.com';
+export const api = 'https://erin-uptight-viper.cyclic.app';
 export const permissionFormSchema = Joi.object({
         studentNames:Joi.string().required().min(1),
         departureDate:Joi.date().required(),

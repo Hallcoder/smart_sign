@@ -10,7 +10,6 @@ function PermissionComponent({ id }) {
   useEffect(() => {
       axios.get(`${api}/permissions/${id}`)
            .then(res => {
-            console.log(res.data.permission)
             let {studentNames,departureDate,departureTime,returnDate,returnTime,reason,issuer} = res.data.permission;
             setName(res.data.permission.studentNames);
             QRcode.toDataURL(`

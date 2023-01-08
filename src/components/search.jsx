@@ -26,17 +26,18 @@ function Search({hide}) {
     const Hits = ({ hits }) => (
         <ol className='border-2'>
        {
-       hits.length !== 0 && hits.map(hit => (
+       hits.length !== 0 && hits.map(hit => {
+        (
             <div key={hit._id} className='border-b border-blue-500 bg-white min-h-[5vh] cursor-pointer' onClick={() =>{ 
               navigate(`/permission/${hit._id}`)
               window.location.reload()
             } 
               }>
             <p className='text-lg'>{hit.studentNames}</p>
-            <p className='text-xs'>{hit.returnDate}</p>
+            <p className='text-xs'>{new Date(hit.returnDate).getUTCDate}</p>
             <p className='text-xs'>{hit.reason}</p>
             </div> 
-          ))
+          )})
        }   
        {hits.length == 0 && <p>No results found</p>}
         </ol>

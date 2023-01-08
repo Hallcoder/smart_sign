@@ -10,9 +10,15 @@ function PermissionComponent({ id }) {
   useEffect(() => {
       axios.get(`${api}/permissions/${id}`)
            .then(res => {
-            console.log(res.data)
+            console.log(res.data.permission)
+            let {studentNames,departureDate,departureTime,returnDate,returnTime,reason,issuer} = res.data.permission;
             setName(res.data.permission.studentNames);
-            QRcode.toDataURL(JSON.stringify(res.data.permission), (err, url) => {
+            QRcode.toDataURL(`
+            Given to :${studentNames}  \n 
+            on:${new Date(departureDate).getDay()}/${new Date(departureDate).getMonth()}} ${departureTime} \n 
+            reason: ${reason} \n
+            by: ${issuer} \n 
+            return on:${new Date(returnDate).getDay()}/${new Date(returnDate).getMonth()} ${returnTime}`, (err, url) => {
               setImage(url);
            })
     });

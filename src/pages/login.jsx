@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState ,useEffect} from "react";
 import { api, loginFormSchema } from "../lib/constants";
 import { handleChange } from "../lib/handleChange";
 import Input from "../components/common/input";
@@ -20,6 +20,7 @@ function Login() {
       if(localStorage.getItem('user')){
          navigate('/options');
       }
+    },[]);
   const buttonRef = useRef();
   const handleSubmit = async e => {
     e.preventDefault();
@@ -37,25 +38,26 @@ function Login() {
             email:'',
             password:''
           });
-          swal(userCredential.user.toString());
+          swal("Firebase success!");
           localStorage.setItem('user', userCredential.user.accessToken);
-          axios.post(`${api}/user/save`,{token:localStorage.getItem('user')})
+          axios.post(`${api}/user/save`,{token:localStorage.getItem('user')},{withCredentials:true})
           .then(res => {
             swal("Login successfully!");
             navigate("/options");
           }).catch(err => {
-            swal(err.response.data);
+          localStorage.removeItem('user');
+            swal("Something went wrong");
             setState('Login')
             return;
           })
-          
         })
         .catch(err => {
           swal(err.message);
           setState('Login')
         });
     }
-  };
+  }
+  
   return (
     <div>
       <div className="text-sm shadow-lg p-1 rounded-md sm:w-4/12 w-full mt-32 h-[70vh] m-auto  items-center flex flex-col">
